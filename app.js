@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// mongoose.connect(process.env.DATABASE_URI || DATABASE_URI);
+mongoose.connect(process.env.DATABASE_URI || DATABASE_URI);
 
 // Main Routes
 const routes = require('./routes');

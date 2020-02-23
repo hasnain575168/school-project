@@ -1,0 +1,43 @@
+.container {
+  margin: 0 auto;
+  width: 1140px;
+}
+
+.main {
+  padding: 50px 10px;
+}
+
+.navbar {
+  background-color: #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+  display: block;
+
+  &,
+  &__text {
+    display: block;
+  }
+
+  &__text {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 14px;
+  }
+}
+
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-justify { text-align: justify; }
+
+.form {
+  &__title {
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+}
