@@ -26,6 +26,10 @@ const routes = require('./routes');
 
 app.use(routes);
 
+app.get('*', (req, res) => {
+  res.render('index');
+});
+
 app.listen((process.env.PORT || PORT), (error) => {
   if (error) {
     throw error;

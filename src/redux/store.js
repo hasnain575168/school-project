@@ -6,7 +6,7 @@ import {
 } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
-import complaintReducer from './complaint/complaint.reducer';
+import userReducer from './user/user.reducer';
 
 const middlewares = [
   ReduxThunk,
@@ -16,7 +16,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => createStore(
   combineReducers({
-    complaints: complaintReducer,
+    user: userReducer,
   }),
   composeEnhancers(
     applyMiddleware(...middlewares),

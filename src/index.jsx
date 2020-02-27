@@ -7,7 +7,9 @@ import App from './app';
 import 'antd/es/row/style';
 import 'antd/es/col/style';
 import 'antd/es/menu/style';
+import 'antd/es/list/style';
 import 'antd/es/button/style';
+import 'antd/es/select/style';
 import 'antd/es/typography/style';
 import 'antd/es/notification/style';
 
