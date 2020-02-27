@@ -3,6 +3,8 @@ const router = require('express').Router();
 const Fund = require('../../models/Fund');
 const Complaint = require('../../models/Complaint');
 
+const verifyJwt = require('../../middlewares/jwt-auth');
+
 router.get('/api/funds', async (req, res) => {
   try {
     const funds = await Fund.find({}, {
@@ -20,7 +22,7 @@ router.get('/api/funds', async (req, res) => {
   }
 });
 
-router.delete('/api/funds/:id', async (req, res) => {
+router.delete('/api/funds/:id', verifyJwt, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -51,7 +53,7 @@ router.get('/api/complaints', async (req, res) => {
   }
 });
 
-router.delete('/api/complaints/:id', async (req, res) => {
+router.delete('/api/complaints/:id', verifyJwt, async (req, res) => {
   try {
     const { id } = req.params;
 

@@ -3,7 +3,6 @@ import axios from 'axios';
 import {
   List,
   Button,
-  Typography,
 } from 'antd';
 
 import { BASE_URI } from '../../types';
