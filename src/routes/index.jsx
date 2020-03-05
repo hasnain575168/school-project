@@ -14,7 +14,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route
-        path="/auth"
+        path="/admin/auth"
         component={AuthRoutes}
       />
       <Route

@@ -11,8 +11,6 @@ export const login = (username, password, callback = null) => (dispatch) => {
   }).then((response) => {
     const { data } = response;
 
-    console.log(data);
-
     if (data.success) {
       localStorage.setItem('AUTH-TOKEN', data.token);
 
@@ -39,6 +37,8 @@ export const verify = (callback = null) => (dispatch) => {
       bearer: localStorage.getItem('AUTH-TOKEN'),
     },
   }).then((response) => {
+    console.log(response);
+
     const { data } = response;
 
     if (data.success) {

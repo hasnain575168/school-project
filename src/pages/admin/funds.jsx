@@ -1,28 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-import {
-  List,
-  Button,
-} from 'antd';
+import { Typography } from 'antd';
 
 import { BASE_URI } from '../../types';
 
-const months = {
-  jan: 'January',
-  feb: 'February',
-  mar: 'March',
-  apr: 'April',
-  may: 'May',
-  jun: 'June',
-  jul: 'August',
-  sep: 'September',
-  oct: 'October',
-  nov: 'November',
-  dec: 'December',
-};
+import Chart from '../../components/chart';
+import ChartFilter from '../../components/chart-filter';
+
+const { Title } = Typography;
 
 const FundsPage = () => {
   const [funds, setFunds] = React.useState([]);
+  const [filter, setFilter] = React.useState('');
+  const [filteredFunds, setFilteredFunds] = React.useState([]);
 
   React.useEffect(() => {
     axios.get(`${BASE_URI}/api/funds`).then(({ data }) => {
@@ -34,45 +24,50 @@ const FundsPage = () => {
     });
   }, []);
 
-  const handleRemoveFund = (id) => {
-    axios.delete(`${BASE_URI}/api/funds/${id}`, {
-      headers: {
-        bearer: localStorage.getItem('AUTH-TOKEN'),
-      },
-    }).then(({ data }) => {
-      if (data.success) {
-        setFunds(funds.filter(({ _id }) => _id !== id));
-      }
-    });
+  React.useEffect(() => {
+    if (filter) {
+      setFilteredFunds(funds.filter(({ month }) => month === filter));
+    } else {
+      setFilteredFunds([...funds]);
+    }
+  }, [filter, funds]);
+
+  const handleFilterChange = (value) => {
+    setFilter(value);
   };
 
   return (
-    <List>
-      {
-        funds.map(({
-          _id,
-          name,
-          month,
-          amount,
-        }) => (
-          <List.Item key={_id}>
-            <List.Item.Meta
-              title={months[month]}
-              description={`${amount} amount of funds request by ${name}`}
-            />
-            <Button
-              size="small"
-              type="danger"
-              onClick={() => {
-                handleRemoveFund(_id);
-              }}
-            >
-              Reject
-            </Button>
-          </List.Item>
-        ))
-      }
-    </List>
+    <div>
+      <Title
+        level={1}
+        className="text-center"
+      >
+        Funds Dataset
+      </Title>
+      <ChartFilter
+        defaultValue={filter}
+        onChange={handleFilterChange}
+      />
+      <Chart
+        data={{
+          labels: filteredFunds.map(({ name }) => name),
+          datasets: [
+            {
+              label: 'Funds Dataset',
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(255, 159, 64, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+              ],
+              data: filteredFunds.map(({ amount }) => amount),
+            },
+          ],
+        }}
+      />
+    </div>
   );
 };
 

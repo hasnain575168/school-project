@@ -13,6 +13,8 @@ const ProtectedRoute = ({
   component: Component,
   ...rest
 }) => {
+  console.log(user);
+
   const { isAuthenticated, loading } = user;
 
   if (!isAuthenticated && loading) {
@@ -20,7 +22,7 @@ const ProtectedRoute = ({
   }
 
   if (!isAuthenticated && !loading) {
-    return <Redirect to="/auth/login" />;
+    return <Redirect to="/admin/auth/login" />;
   }
 
   return (

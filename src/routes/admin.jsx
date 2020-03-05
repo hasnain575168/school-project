@@ -18,6 +18,7 @@ import AdminLayout from '../layouts/admin';
 // Pages
 import FundsPage from '../pages/admin/funds';
 import ComplaintsPage from '../pages/admin/complaints';
+import FundsRequestPage from '../pages/admin/funds-request';
 
 // Components
 import ProtectedRoute from './protected-route.component';
@@ -38,6 +39,11 @@ const AdminRoutes = ({
           exact
           path={path}
           component={FundsPage}
+        />
+        <ProtectedRoute
+          exact
+          path={`${path}/fund`}
+          component={FundsRequestPage}
         />
         <ProtectedRoute
           path={`${path}/complaint`}

@@ -45,6 +45,11 @@ const AdminLayout = ({
               </Link>
             </Menu.Item>
             <Menu.Item>
+              <Link to={`${url}/fund`}>
+                Funds Request
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
               <Link to={`${url}/complaint`}>
                 Complaints
               </Link>

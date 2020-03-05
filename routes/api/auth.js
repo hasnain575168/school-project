@@ -105,6 +105,7 @@ router.post('/api/auth/verify', async (req, res) => {
 
     return res.status(200).json({
       success: true,
+      token,
       user: {
         email: verified.email,
         username: verified.username,
